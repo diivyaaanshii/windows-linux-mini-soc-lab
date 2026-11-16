@@ -1,0 +1,7 @@
+
+index=main sourcetype="XmlWinEventLog:Security"
+| rex "<EventID>(?<event_id>\d+)</EventID>"
+| search event_id=4624
+| rex field=_raw "<Data Name='TargetUserName'>(?<username>[^<]+)</Data>"
+| stats count as successful_logins by username
+| sort - successful_logins
