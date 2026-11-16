@@ -4,3 +4,4 @@ index=main sourcetype=linux_secure "COMMAND="
 | stats count as command_count by command
 | sort - command_count
 | head 10
+
