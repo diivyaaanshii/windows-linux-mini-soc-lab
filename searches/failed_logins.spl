@@ -1,0 +1,9 @@
+
+index=main sourcetype="XmlWinEventLog:Security"
+| rex "<EventID>(?<event_id>\d+)</EventID>"
+| search event_id=4625
+| rex field=_raw "<Data Name='TargetUserName'>(?<username>[^<]+)</Data>"
+| rex field=_raw "<Data Name='IpAddress'>(?<src_ip>[^<]+)</Data>"
+| rex field=_raw "<Data Name='LogonType'>(?<logon_type>[^<]+)</Data>"
+| table _time username src_ip logon_type
+| sort - _time
