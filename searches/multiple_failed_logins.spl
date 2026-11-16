@@ -1,0 +1,8 @@
+
+index=main sourcetype="XmlWinEventLog:Security" earliest=-5m
+| rex "<EventID>(?<event_id>\d+)</EventID>"
+| search event_id=4625
+| rex field=_raw "<Data Name='TargetUserName'>(?<username>[^<]+)</Data>"
+| stats count as failed_attempts by username
+| where failed_attempts >= 3
+| sort - failed_attempts
