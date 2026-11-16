@@ -1,5 +1,4 @@
-# windows-linux-mini-soc-lab
-Hands-on Mini SOC lab using Splunk to monitor Windows Security and Linux authentication logs
+
 
 # Windows & Linux Mini SOC Lab
 
