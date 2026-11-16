@@ -7,3 +7,5 @@ index=main sourcetype="XmlWinEventLog:Security"
 | rex field=_raw "<Data Name='LogonType'>(?<logon_type>[^<]+)</Data>"
 | table _time username src_ip logon_type
 | sort - _time
+
+
